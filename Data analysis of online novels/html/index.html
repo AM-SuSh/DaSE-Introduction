@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>晋江榜单热门小说数据大屏</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-wordcloud.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/jquery.liMarquee.js"></script>
+    <script type="text/javascript" src="js/jquery.cxselect.min.js"></script>
+    <link rel="stylesheet" href="css/comon0.css">
+</head>
+
+<body>
+    <div style="background:#000d4a url(img/bg.png) center top;">
+        <div class="loading">
+            <div class="loadbox"> <img src="img/loading.gif"> 页面加载中... </div>
+        </div>
+        <div class="back"></div>
+        <div class="head">
+            <div class="weather"><span id="showTime"></span></div>
+                <h1>晋江榜单热门小说数据大屏</h1>
+            </a>
+
+        </div>
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000); /*开始运行*/
+            function time() {
+                clearTimeout(t); /*清除定时器*/
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+                document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日" + h + "时" + m + "分" + s + "秒";
+                t = setTimeout(time, 1000);
+            }
+        </script>
+        <div class="mainbox">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall" style="height:400px;">
+                        <div class="alltitle">标签分布词云</div>
+                        <div class="navboxall" id="echart5"></div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">榜单数据轮播</div>
+                        <div class="navboxall">
+                            <div class="wraptit">
+                                <span>作品</span><span>作家</span><span>类型</span>
+                            </div>
+                            <div class="wrap">
+                                <ul>
+                                    <li>
+                                        <p><span>天官赐福</span><span>墨香铜臭</span><span>原创-纯爱-架空历史-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>某某</span><span>木苏里</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>全球高考</span><span>木苏里</span><span>原创-纯爱-近代现代-剧情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>我行让我上</span><span>酱子贝</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>判官</span><span>木苏里</span><span>原创-纯爱-近代现代-奇幻</span></p>
+                                    </li>
+
+                                    <li>
+                                        <p><span>死亡万花筒</span><span>西子绪</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>破云</span><span>淮上</span><span>原创-纯爱-近代现代-悬疑</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>破云2吞海</span><span>淮上</span><span>原创-纯爱-近代现代-悬疑</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>撒野</span><span>巫哲</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>放学等我</span><span>酱子贝</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>魔道祖师</span><span>墨香铜臭</span><span>原创-纯爱-架空历史-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>洄天</span><span>淮上</span><span>原创-纯爱-近代现代-奇幻</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>烈火浇愁</span><span>priest</span><span>原创-纯爱-近代现代-奇幻</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>营业悖论</span><span>稚楚</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>将进酒</span><span>唐酒卿</span><span>原创-纯爱-架空历史-爱情</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>小蘑菇</span><span>一十四洲</span><span>原创-纯爱-幻想未来-科幻</span></p>
+                                    </li>
+                                    <li>
+                                        <p><span>地球上线</span><span>莫晨欢</span><span>原创-纯爱-近代现代-爱情</span></p>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">时代分布</div>
+                        <div class="navboxall" id="echart1"></div>
+                    </div>
+                </li>
+                <li>
+
+                    <div class="boxall" style="height:230px">
+                        <div class="clearfix navboxall" style="height: 100%">
+
+                            <div class="pulll_left zhibiao">
+                                <div class="zb1"><span style="font-size: 22px;"><br>上榜总数</span>
+                                    <div id="zb1"></div>
+                                </div>
+                                <div class="zb2"><span><br>原创性</span>
+                                    <div id="zb2"></div>
+                                </div>
+                                <div class="zb3"><span style="font-size: 22px;"><br>性向</span>
+                                    <div id="zb3"></div>
+                                </div>
+                            </div>
+                            <div class="pulll_right zhibiao ">
+                                <div class="zb4"><span><br>高分</span>
+                                    <div id="zb4"></div>
+                                </div>
+                                <div class="zb5"><span style="font-size: 22px;"><br>进度</span>
+                                    <div id="zb5"></div>
+                                </div>
+                                <div class="zb6"><span><br>篇幅</span>
+                                    <div id="zb6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="boxall" style="height:350px">
+                        <div class="alltitle">小说品质与类型统计</div>
+                        <div class="navboxall" id="echart4"></div>
+                    </div>
+
+                    <div class="boxall" style="height:340px">
+                        <div class="alltitle">发表年份与小说品质统计</div>
+                        <div class="navboxall" id="echart3"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="boxall" style="height:300px">
+                        <div class="alltitle">总分排行榜</div>
+                        <div class="navboxall">
+                            <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" class="toptop">排名</th>
+                                        <th scope="col">作品</th>
+                                        <th scope="col">总分（亿）</th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td><a href="https://www.jjwxc.net/onebook.php?novelid=3200611" target="_blank">天官赐福</a>
+                                        </td>
+                                        <td>699.8</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td><a href="https://www.jjwxc.net/onebook.php?novelid=3173202" target="_blank">某某</a>
+                                        </td>
+                                        <td>423.1</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td><a href="https://www.jjwxc.net/onebook.php?novelid=3419133" target="_blank">全球高考</a>
+                                        </td>
+                                        <td>400.3</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td><a href="https://www.jjwxc.net/onebook.php?novelid=5484954" target="_blank">欢迎进入梦魇直播间</a>
+                                        </td>
+                                        <td>399.6</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td><a href="https://www.jjwxc.net/onebook.php?novelid=4404708" target="_blank">我行让我上[电竞]</a>
+                                        </td>
+                                        <td>392.5</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="boxall" style="height: 300px">
+                        <div class="alltitle">作家排行榜</div>
+                        <div class="navboxall">
+                            <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" class="toptop">排名</th>
+                                        <th scope="col">作家</th>
+                                        <th scope="col">作品上榜数量</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td><a href="https://www.jjwxc.net/oneauthor.php?authorid=966799" target="_blank">木苏里</a></td>
+                                        <td>9<br></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td><a href="https://www.jjwxc.net/oneauthor.php?authorid=570049" target="_blank">巫哲</a></td>
+                                        <td>9</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td><a href="https://www.jjwxc.net/oneauthor.php?authorid=379620" target="_blank">西子绪</a></td>
+                                        <td>7</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td><a href="https://www.jjwxc.net/oneauthor.php?authorid=2273078" target="_blank">稚楚</a></td>
+                                        <td>7</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td><a href="https://www.jjwxc.net/oneauthor.php?authorid=145956" target="_blank">priest</a></td>
+                                        <td>7</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="boxall" style="height:320px">
+                        <div class="alltitle">主题分布</div>
+                        <div class="navboxall" id="echart2"></div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $('.wrap,.adduser').liMarquee({
+                direction: 'up',
+                /*向上滚动*/
+                runshort: false,
+                /*内容不足时不滚动*/
+                scrollamount: 20 /*速度*/
+            });
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
